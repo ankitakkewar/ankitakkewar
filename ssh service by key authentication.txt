@@ -1,0 +1,55 @@
+             PORT=22
+        /etc/ssh/sshd_config
+       **CONFIG FILE OF SSH**
+
+        /home/admin/.ssh/id_rsa
+      /home/admin/.ssh/id_rsa.pub      
+             **KEY PATH**
+
+server side:
+
+* First we have to check ssh package are install or not.
+  for that use this command
+ # firewall-cmd --list-all
+
+* Check status of ssh system for that command
+ # systemctl status ssh
+
+* Generate key for key authntication
+ # ssh-keygen
+
+* Bydeault create .ssh directry within this .ssh create 
+  public key and private key
+  id_rsa  id_rsa.pub
+
+* for inform kernal system create a authorized_keys file
+   and copy the public key in that file.
+ # cat id_rsa.pub > authorized_keys
+  from this command automatically create and copy contain
+  from id_rsa.pub file
+
+* authorized_keys file need only user permission for 
+  security purpose only root user can be acess
+ # chmod 600 authorized_key
+
+* Send private key to user who we give acess that user
+ #scp id_rsa root@123.23.0.3:/mnt
+
+ root ki jagh koi bhi user ho skta,jo bhi user key genrate
+ krke clint ko send krega uska login name our @ uske baad 
+ us hi user ki ip fir : deke location dalna jidhar key paste 
+ krna hai krte time client ka passward ek time dalna pdta hai
+
+client side: 
+
+*jis location mai key send ki ho server ne us location mai
+ jane ka for ex: cd /mnt
+
+*fir ssh lene ke liye command dalna hai
+ # ssh -i id_rsa root@123.23.0.2
+ root means jo bhi user jiska acess lena hai our jis user
+ ne private key send ki hai uska name then @ then usi user
+ ka ip adress
+
+*without asking passward server ka acess milana chahiye agar 
+ mil jaye acess to service barabar ho gyi execute

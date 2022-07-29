@@ -1,0 +1,27 @@
+                 PORT=22
+           /etc/ssh/sshd_config
+          **CONFIG FILE OF SSH**
+ 
+         /home/admin/.ssh/id_rsa
+       /home/admin/.ssh/id_rsa.pub
+             **KEY PATH** 
+
+server side:
+
+* First we have to check ssh package are install or not.
+  for that use this command
+ # firewall-cmd --list-all
+
+* Check status of ssh system for that command
+ # systemctl status ssh
+
+Client side:
+
+* Only single command use in it and then directly acess recived
+ # ssh root@123.23.0.2
+  server ya user jiska acess lena hai uska name and uska ip address  
+ 
+* That time ask for server  passward and for that we need to know
+  server or user passward
+
+* After up process recived acess of server to client 

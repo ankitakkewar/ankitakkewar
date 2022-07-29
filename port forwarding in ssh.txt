@@ -1,0 +1,45 @@
+                      PORT=22 
+               /etc/ssh/sshd_config
+               **CONFIG FILE OF SSH**
+
+             /home/admin/.ssh/id_rsa
+           /home/admin/.ssh/id_rsa.pub      
+                  **KEY PATH**
+Server:
+
+* After succeful ssh service we need more secure ssh for that
+  we need to change port number in configuration file
+
+* command to edit config file
+ # vim /etc/ssh/sshd_config
+
+In a line number 16 port number present
+first uncomment that port number before #Port 22
+then Port 22
+
+*Set new port number at the place of 22
+ ex. Port 2012
+Then, save and exist from file.
+
+*for refresh ssh use only this command seLinux 
+ # semanage port -a -t ssh_port_t -p tcp 2012
+port number that we enterd in config file of ssh
+
+* ones system restart
+ # systemctl restart sshd
+ # systemctl enable sshd
+ # systemctl status sshd
+
+* add forward port on firewall
+ # firewall-cmd --add-forward-port=port=22:proto=tcp
+   :toport=2012 --permanent
+  
+ # firewall-cmd --reload
+
+ # firewall-cmd --list-all
+
+Client: Direct command for ssh acess no need to any change in client 
+ 
+ # ssh -i id_rsa root@123.23.0.2
+
+**present in a id_rsa file directory**
