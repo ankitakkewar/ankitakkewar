@@ -1,0 +1,50 @@
+                   PORT=514
+           
+               /etc/rsyslog.conf
+             config file of rsyslog
+
+Server:
+
+*  # vim /etc/rsyslog.conf
+
+*  set nu and go to 19 & 20`s line
+   remove # from that line and make a uncomment
+
+* below that line create a two empty line 
+  in that line enter this line in 21 & 22 number as below
+
+$template tmplAuth,"/var/log/%HOSTNAME%/%PROGRAMNAME%.log"
+ 
+*.* ?tmplAuth
+
+after writting 21's number line inside of " " become in red colur
+
+save and exist from config file 
+
+*  # systemctl restart rsyslog.service
+
+Client:
+
+*  # vim /etc/rsyslog.conf
+  
+ go second last line of file 90 number 
+ remove # and make it uncomment and create a line below that 
+ and enter server ip as below
+ 
+ *.*@@123.23.0.2:514
+      [server ip] [port]
+
+*  # systemctl restart rsyslog.service
+
+Server:
+ 
+  add port number of rsyslog service on server side 
+*  # firewall-cmd --add-port=514/tcp --permanet 
+
+*  # firewall-cmd --reload
+
+Client:
+   # logger "hi i am ankit"
+
+Server: 
+   # ls /var/log/{client name dire created}/
