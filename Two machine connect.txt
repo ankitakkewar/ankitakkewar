@@ -1,0 +1,32 @@
+       How to connect two machine in same network ip
+
+1. Add network adapter
+player--removable device--network adapter--setting--add network adapter
+
+2.check by command [ifconfig]
+ens36 and so on will be add
+check that default id is allocated or not
+
+3.press command [nmtui] to check network setting
+ go edit a connection
+ check that any ethernet is add or not related to ens36
+ if not then go to add--ethernet--
+ profile name= server/client..etc
+ device=ens36/ens37....etc
+ IPv4 convert into manual--show
+ Addresses=any address you want
+           ex.123.23.0.2/16
+ Gateway= gateway will be same as address
+           ex.123.23.0.1
+then no any other changes press ok.
+restart ones net from activate a connection
+
+
+same prcedure follow in another machine but when we edit another machine
+at that time address will be same as a previous network bit 
+           ex.123.23.0.3/16
+and gateway will same as 1st machine
+           ex.123.23.0.1
+
+[ping ip address] from both machine ip address will be exchange from 
+                      ones another
